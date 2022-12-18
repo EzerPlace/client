@@ -28,7 +28,6 @@ export const Map = () => {
     const mapRef = useRef<GoogleMap>();
     const center = useMemo<LatLngLiteral>(() => ({ lat: 41, lng: -80 }), []);
     const options = useMemo<MapOptions>(()=>({
-        mapId: "1e12944ca565c219",
         disableDefaultUI: true,
         clickableIcons: false,
 }),[]) 
