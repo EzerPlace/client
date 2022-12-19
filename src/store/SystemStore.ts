@@ -35,7 +35,7 @@ const getAllSystems = async () => {
 const getSystemsOfAdmin = async () => {
     try {
         const headers = await getHeaders();  
-        const res = await axios.get(baseUrl, {
+        const res = await axios.get(`${baseUrl}/ofAdmin`, {
             headers: headers,
         })
         return res.data;
