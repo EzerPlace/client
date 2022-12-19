@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { EditSystem } from './editSystem';
 import { AddSystem } from './addSystem';
 import { System } from '../utils/System';
+import { auth } from '../config/firebase';
 import systemStore from '../store/SystemStore';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -23,14 +24,24 @@ const ShowAllSystems = () => {
   const [systems, setSystems] = useState<System[]>([]);
   const [openAdd, setOpenAdd] = useState<boolean>(false);
   const [openEdit, setOpenEdit] = useState<boolean>(false);
-  
+  const [allSystems, setAllSystems] = useState<boolean>(true);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetch = async () => {
-      await systemStore.getSystemsOfAdmin();
+      try {
+        allSystems ?
+          await systemStore.getAllSystems() :
+          await systemStore.getSystemsOfAdmin()
+      } catch {
+        navigate('/errorPage');
+      }
+
       setSystems(systemStore.systems);
     };
     fetch();
-  }, [openAdd, openEdit]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openAdd, openEdit, allSystems]);
 
   const handleClickOpen = () => {
     if (systems.length === maxOfSystems) swal("You cannot add a new system", "you have reached the maximum possible amount of systems")
@@ -56,11 +67,18 @@ const ShowAllSystems = () => {
     fetch();
   }
 
-  const navigate = useNavigate();
-
   return (
     <>
-      <SendGrid />
+      <SendGrid />      {
+        auth.currentUser &&
+        <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
+          <Button variant="outlined" onClick={() => setAllSystems(!allSystems)}
+            sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>
+            {allSystems ? 'My Systems' : 'All Systems'}
+          </Button>
+        </Box>
+
+      }
       <Box sx={{ width: '100%' }} textAlign={'center'}>
         <Typography variant="h4" component="h2" >
           All MY SYSTEMS
@@ -99,6 +117,8 @@ const ShowAllSystems = () => {
           </Card>
         )}
       </Box>
+
+
       <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
         <Button variant="outlined" onClick={handleClickOpen}
           sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>

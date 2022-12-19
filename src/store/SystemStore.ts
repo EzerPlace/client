@@ -25,6 +25,13 @@ const addSystem = async (system: System) => {
     } catch (error) { console.log(error); }
 }
 
+const getAllSystems = async () => {
+    try {
+        const res = await axios.get(baseUrl)
+        return res.data;
+    } catch (error) { console.log(error); }
+}
+
 const getSystemsOfAdmin = async () => {
     try {
         const headers = await getHeaders();  
@@ -68,6 +75,10 @@ class Store {
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    async getAllSystems() {
+        this.systems = await getAllSystems();
     }
 
     async getSystemsOfAdmin() {

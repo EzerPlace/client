@@ -9,7 +9,6 @@ type placesProps = {
     setOffice:(position:google.maps.LatLngLiteral)=>void;
 }
 
-
 const Place=({setOffice}:placesProps)=>
 {
 const {ready ,value ,setValue ,suggestions:{status,data} ,clearSuggestions} = usePlacesAutocomplete();

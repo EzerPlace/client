@@ -4,6 +4,7 @@ import Login from '../pages/auth/Login';
 import Reset from '../pages/auth/Reset';
 import HomePage from '../pages/HomePage';
 import ManagerPage from '../pages/ManagerPage';
+import ErrorPage from '../pages/ErrorPage';
 import { SystemHome } from '../pages/systemHome';
 
 const routes: IRoute[] = [
@@ -36,6 +37,12 @@ const routes: IRoute[] = [
         exact: true,
         component: ManagerPage,
         name: 'Manager Page',
+        protected: false
+    },  {
+        path: '/errorPage',
+        exact: true,
+        component: ErrorPage,
+        name: 'Error Page',
         protected: false
     },   {
         path: '/:systemUrl',
