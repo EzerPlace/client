@@ -35,7 +35,7 @@ const SignUpPage: React.FunctionComponent<IPageProps> = props => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [phone, setPhone] = useState("");
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState<number>(0);
     const history = useNavigate();
 
     const register = () => {

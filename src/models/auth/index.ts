@@ -35,7 +35,7 @@ export const registerWithEmailAndPassword = async (email: string, password: stri
 export const logInWithEmailAndPassword = async (email: string, password: string) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        userStore.getUserById();
+        userStore.getUser();
     } catch (err: any) {
         console.error(err);
         alert(err.message);
@@ -45,7 +45,7 @@ export const logInWithEmailAndPassword = async (email: string, password: string)
 export const signInWithGoogle = async () => {
     try {
         await signInWithPopup(auth, googleProvider);
-        userStore.getUserById();
+        userStore.getUser();
     } catch (err: any) {
         console.error(err);
         alert(err.message);

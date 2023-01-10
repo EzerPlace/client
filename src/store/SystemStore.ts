@@ -32,6 +32,13 @@ const getAllSystems = async () => {
     } catch (error) { console.log(error); }
 }
 
+const getSystemByUrlName = async (urlName: string | undefined) => {
+    try {
+        const res = await axios.get(`${baseUrl}/urlName/${urlName}`)
+        return res.data;
+    } catch (error) { console.log(error); }
+}
+
 const getSystemsOfAdmin = async () => {
     try {
         const headers = await getHeaders();  
@@ -79,6 +86,10 @@ class Store {
 
     async getAllSystems() {
         this.systems = await getAllSystems();
+    }
+
+    async getSystemByUrlName(urlName: string | undefined) {
+        this.currentSystem = await getSystemByUrlName(urlName);
     }
 
     async getSystemsOfAdmin() {

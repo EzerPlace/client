@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EditSystem } from './editSystem';
 import { AddSystem } from './addSystem';
@@ -44,7 +44,10 @@ const ShowAllSystems = () => {
   }, [openAdd, openEdit, allSystems]);
 
   const handleClickOpen = () => {
-    if (systems.length === maxOfSystems) swal("You cannot add a new system", "you have reached the maximum possible amount of systems")
+    if (!auth.currentUser)
+      swal("You cannot add a new system", "You need to identify yourself")
+    if (systems.length === maxOfSystems)
+      swal("You cannot add a new system", "You have reached the maximum possible amount of systems")
     else setOpenAdd(true);
   };
 
@@ -69,20 +72,20 @@ const ShowAllSystems = () => {
 
   return (
     <>
-      <SendGrid />      {
+      <SendGrid />      
+      <Box sx={{ width: '100%' }} textAlign={'center'}>
+        {
         auth.currentUser &&
+        <Typography variant="h4" component="h2" >
+        
         <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
           <Button variant="outlined" onClick={() => setAllSystems(!allSystems)}
             sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>
             {allSystems ? 'My Systems' : 'All Systems'}
           </Button>
         </Box>
-
-      }
-      <Box sx={{ width: '100%' }} textAlign={'center'}>
-        <Typography variant="h4" component="h2" >
-          All MY SYSTEMS
-        </Typography>
+      
+        </Typography>}
         {systems && systems.map((systemCard: System, index: number) =>
           <Card
             key={index}

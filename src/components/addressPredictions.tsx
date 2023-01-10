@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { UseAddressPredictions } from "./useAddressPredictions";
 
-export default function AddressPredictions() {
+export const AddressPredictions = () => {
   const [input, setInput] = useState<string>('');
 
   const predictions = UseAddressPredictions(input);

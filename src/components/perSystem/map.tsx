@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, useRef, useEffect } from 'react';
+import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
 import {
   GoogleMap,
   Marker,
@@ -7,13 +7,13 @@ import {
   MarkerClusterer,
   MarkerClustererProps,
 } from '@react-google-maps/api';
-import '../style/map.css';
-import { TryTwoTone } from '@mui/icons-material';
-import PushPinIcon from '@mui/icons-material/PushPin';
+import '../../style/map.css';
+// import { TryTwoTone } from '@mui/icons-material';
+// import PushPinIcon from '@mui/icons-material/PushPin';
 import Places from './places'
-import cluster from 'cluster';
-import { color } from '@mui/system';
-import Distance from './distance';
+// import cluster from 'cluster';
+// import { color } from '@mui/system';
+import { Distance } from './distance';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
@@ -22,6 +22,7 @@ type MapOptions = google.maps.MapOptions;
 // interface props {
 //   center: { lat: number, lng: number };{ center }: props
 // }
+
 export const Map = () => {
   const [directions, setDirections] = useState<DirectionsResult | any>();
   const [office, setOffice] = useState<LatLngLiteral>();
@@ -33,7 +34,7 @@ export const Map = () => {
   }), [])
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (position) {
+    navigator.geolocation.getCurrentPosition((position) => {
       setOffice({ lat: position.coords.latitude, lng: position.coords.longitude });
     })
   }, []);
@@ -57,6 +58,7 @@ export const Map = () => {
       }
     )
   }
+  
   return (
     <div className='container'>
       <div className='controls'>
@@ -67,6 +69,7 @@ export const Map = () => {
         }} />
         {directions && <Distance leg={directions.routes[0].legs[0]} />}
       </div>
+      
       <div className='map'>
         <GoogleMap
           zoom={10}

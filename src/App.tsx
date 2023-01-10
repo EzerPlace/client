@@ -11,16 +11,20 @@ const App: React.FunctionComponent<IApplicationProps> = props => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    auth.onAuthStateChanged ( async user => {
+    auth.onAuthStateChanged(async user => {
       if (user) {
-        await userStore.getUserById();
-      } 
+        await userStore.getUser();
+      }
       setLoading(false);
     })
   }, []);
 
   if (loading)
-    return <div className='loader-container'></div>
+    return <div className='loader-container'>loading
+      <span className='loadingAnim1'>.</span>
+      <span className='loadingAnim2'>.</span>
+      <span className='loadingAnim3'>.</span>
+    </div>
 
   return (
     <Router>

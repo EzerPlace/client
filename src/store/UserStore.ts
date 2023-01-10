@@ -54,10 +54,10 @@ class Store {
 
     async addUser(firstName: string, lastName: string, phone: string | undefined | null) {
         await addUser(firstName, lastName, phone);
-        this.getUserById();
+        this.getUser();
     }
 
-    async getUserById() {
+    async getUser() {
         this.user = await getUser();
     }
 }
