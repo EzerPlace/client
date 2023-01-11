@@ -24,12 +24,12 @@ const Place = ({ setOffice }: placesProps) => {
     return (
         <>
             <Combobox onSelect={handleSelect}>
-                <ComboboxInput value={value} onChange={e => setValue(e.target.value)} disabled={!ready}
+                <ComboboxInput value={value} onChange={e => {setValue(e.target.value); debugger}} disabled={!ready}
                     placeholder="Search for another starting location" className="combobox-input" />
                 <ComboboxPopover >
                     <ComboboxList  >
                         {status === "OK" && data.map(({ place_id, description }) =>
-                            (<ComboboxOption key={place_id} value={description} className="c" />))}
+                            (<ComboboxOption key={place_id} value={description} className="c" />)) }
                     </ComboboxList>
                 </ComboboxPopover>
             </Combobox>

@@ -1,27 +1,30 @@
-/* .map-container {
+ /* .map-container {
     width: 100%;
     height: 100vh;
-} */
+}  */
 
-.container{
-    display: flex;
-    height: 75vh;
-}
-.map{
-    width: 80%;
-    height: 100%;
-}
-.map-container{
-    width: 100%;
-    height: 100%;
-}
-.controls{
-    width: 20%;
-    padding: 1rem;
-    background-color:#14161a ;
-    color:#fff;
-    
-}
-.controls input{
-    border: none;
-}
+ .container {
+     display: flex;
+     height: 70vh;
+ }
+
+ .map {
+     width: 100%;
+     height: 100%;
+ }
+
+ .map-container {
+     width: 100%;
+     height: 100%;
+ }
+
+ .controls {
+     width: 20%;
+     padding: 1rem;
+     background-color: #14161a;
+     color: #fff;
+ }
+
+ .controls input {
+     border: none;
+ }
