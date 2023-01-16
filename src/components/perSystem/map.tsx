@@ -175,9 +175,11 @@ import {
   MarkerClustererProps,
 } from '@react-google-maps/api';
 import '../../style/map.css';
+import { useNavigate } from 'react-router-dom';
 import markerStore from '../../store/MarkerStore';
 import { observer } from 'mobx-react';
 import { AddMarker } from '../markers/addMarker';
+import systemStore from '../../store/SystemStore';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
@@ -194,8 +196,9 @@ export const Map = () => {
   }), [])
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
-  const houses = useMemo(() => generate(center), [center])
-  const onLoad = useCallback((map: any) => (mapRef.current = map), [])
+  const houses = useMemo(() => generate(center), [center]);
+  const onLoad = useCallback((map: any) => (mapRef.current = map), []);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -213,6 +216,11 @@ export const Map = () => {
       mapRef.current?.panTo(markerStore.autoCompleteMarker)
 
   }, [position])
+
+  // useEffect(() => {
+  //   if (openDialog)
+  //     navigate('/:systemUrl/addMarker');
+  // }, [navigate, openDialog])
 
   return (
     <div className='container'>
@@ -251,19 +259,19 @@ export const Map = () => {
                 options={{ fillColor: 'red', fillOpacity: 0.1, strokeColor: 'red' }} />
             </>
             )
-            
+
           </GoogleMap>
         }
       </div>
       <Box onMouseOver={() => setIsHovering(true)} onMouseOut={() => setIsHovering(false)}
         sx={{ position: 'absolute', bottom: '50px', left: 'calc(50vw - 200px)', width: '100%', marginBottom: '0%' }}>
-        <Button variant="outlined" onClick={() => setOpenDialog(true)}
+        <Button variant="outlined" onClick={() => setOpenDialog(true)} 
           sx={{ marginTop: '30px', marginLeft: '70px' }}>
           <RoomIcon />
           {isHovering && 'add marker'}
         </Button>
       </Box>
-      {openDialog && <AddMarker setOpenDialog={setOpenDialog} />}
+      {openDialog && <AddMarker setOpenAdd={setOpenDialog} /> }
     </div>
 
   )

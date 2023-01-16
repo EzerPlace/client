@@ -110,12 +110,13 @@ export const SystemHome = () => {
           <Box sx={{ width: '100%', textAlign: 'center' }}>
             <SystemHeader />
           </Box>
+          
           <Box sx={{ display: 'flex' }} >
             <Box sx={{ width: '80%', direction: 'rtl' }} >
-              <Map  />
+              <Map />
             </Box>
             <Box sx={{ width: '20%', direction: 'rtl' }}>
-              <AutoComplete setCenter={setCenter} />
+              <AutoComplete helperText='Search for another starting location' setCenter={setCenter} />
             </Box>
           </Box>
         </>

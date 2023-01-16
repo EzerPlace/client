@@ -55,13 +55,14 @@ type DirectionsResult = google.maps.DirectionsResult;
 // type MapOptions = google.maps.MapOptions;
 
 interface props {
+    helperText: string;
     setCenter: React.Dispatch<React.SetStateAction<{
         lat: number;
         lng: number;
     }>>;
 }
 
-export const AutoComplete = ({ setCenter }: props) => {
+export const AutoComplete = ({ helperText, setCenter }: props) => {
 
     // const [office, setOffice] = useState<LatLngLiteral>();
     const mapRef = useRef<GoogleMap>();
@@ -114,7 +115,7 @@ export const AutoComplete = ({ setCenter }: props) => {
                 <TextField
                     ref={inputRef}
                     value={value}
-                    helperText='Search for another starting location'
+                    helperText={helperText}
                     onChange={(e) => { setValue(e.target.value) }}
                     disabled={!ready} />
                 {status === 'OK' && data.map(({ place_id, description }) =>

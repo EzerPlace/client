@@ -72,20 +72,20 @@ const ShowAllSystems = () => {
 
   return (
     <>
-      <SendGrid />      
+      <SendGrid />
       <Box sx={{ width: '100%' }} textAlign={'center'}>
         {
-        auth.currentUser &&
-        <Typography variant="h4" component="h2" >
-        
-        <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
-          <Button variant="outlined" onClick={() => setAllSystems(!allSystems)}
-            sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>
-            {allSystems ? 'My Systems' : 'All Systems'}
-          </Button>
-        </Box>
-      
-        </Typography>}
+          auth.currentUser &&
+          <Typography variant="h4" component="h2" >
+
+            <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
+              <Button variant="outlined" onClick={() => setAllSystems(!allSystems)}
+                sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>
+                {allSystems ? 'My Systems' : 'All Systems'}
+              </Button>
+            </Box>
+
+          </Typography>}
         {systems && systems.map((systemCard: System, index: number) =>
           <Card
             key={index}
@@ -121,13 +121,15 @@ const ShowAllSystems = () => {
         )}
       </Box>
 
-
-      <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
-        <Button variant="outlined" onClick={handleClickOpen}
-          sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>
-          Add a new system
-        </Button>
-      </Box>
+      {
+        auth.currentUser &&
+        <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
+          <Button variant="outlined" onClick={handleClickOpen}
+            sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>
+            Add a new system
+          </Button>
+        </Box>
+      }
 
       {openEdit && <EditSystem systemUid={systemIdTOEdit} setOpenEdit={setOpenEdit} />}
 

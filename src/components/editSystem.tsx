@@ -33,7 +33,7 @@ export const EditSystem = ({ systemUid, setOpenEdit }: props) => {
 
     const navigate = useNavigate();
     useEffect(() => {
-        if (!userStore.user){
+        if (!userStore.user) {
             navigate('/');
         }
         const fetch = async () => {
@@ -99,64 +99,63 @@ export const EditSystem = ({ systemUid, setOpenEdit }: props) => {
                 {"Add your system details to update"}
             </DialogTitle>
             <DialogContent >
-                <DialogContentText id="alert-dialog-description">
-                    <TextField id="filled-password-input"
-                        inputRef={inputTopic}
-                        defaultValue={system?.topic}
-                        label='topic'
-                        variant="filled"
-                        sx={{ margin: '3%' }}
-                        required={true}
-                    /> <br />
-                    <TextField id="outlined-basic"
-                        inputRef={inputUrlName}
-                        defaultValue={system?.urlName}
-                        label='urlName'
-                        variant="filled"
-                        sx={{ margin: '3%' }}
-                        required={true}
-                    /><br />
-                    <TextField id="outlined-basic"
-                        inputRef={inputUrlImg}
-                        defaultValue={system?.urlImg}
-                        label='urlImg'
-                        variant="filled"
-                        sx={{ margin: '3%' }}
-                        required={true}
-                    /><br />
-                    <TextField id="outlined-basic"
-                        inputRef={inputObjectName}
-                        defaultValue={system?.objectName}
-                        label='objectName'
-                        variant="filled"
-                        sx={{ margin: '3%' }}
-                        required={true}
-                    /><br />
-                    <TextField id="outlined-basic"
-                        inputRef={inputDescription}
-                        defaultValue={system?.description}
-                        label='description'
-                        multiline
-                        rows={2}
-                        variant="filled"
-                        sx={{ margin: '3%' }}
-                        required={true}
-                    /><br />
-                    <TextField id="outlined-basic"
-                        inputRef={inputEmail}
-                        defaultValue={system?.communicationDetails?.email}
-                        label='email'
-                        variant="filled"
-                        sx={{ margin: '3%' }}
-                    /><br />
-                    <TextField id="outlined-basic"
-                        inputRef={inputPhone}
-                        defaultValue={system?.communicationDetails?.phone}
-                        label='phone'
-                        variant="filled"
-                        sx={{ margin: '3%' }}
-                    />
-                </DialogContentText>
+                <DialogContentText id="alert-dialog-description" />
+                <TextField id="filled-password-input"
+                    inputRef={inputTopic}
+                    defaultValue={system?.topic}
+                    label='topic'
+                    variant="filled"
+                    sx={{ margin: '3%' }}
+                    required={true}
+                /> <br />
+                <TextField id="outlined-basic"
+                    inputRef={inputUrlName}
+                    defaultValue={system?.urlName}
+                    label='urlName'
+                    variant="filled"
+                    sx={{ margin: '3%' }}
+                    required={true}
+                /><br />
+                <TextField id="outlined-basic"
+                    inputRef={inputUrlImg}
+                    defaultValue={system?.urlImg}
+                    label='urlImg'
+                    variant="filled"
+                    sx={{ margin: '3%' }}
+                    required={true}
+                /><br />
+                <TextField id="outlined-basic"
+                    inputRef={inputObjectName}
+                    defaultValue={system?.objectName}
+                    label='objectName'
+                    variant="filled"
+                    sx={{ margin: '3%' }}
+                    required={true}
+                /><br />
+                <TextField id="outlined-basic"
+                    inputRef={inputDescription}
+                    defaultValue={system?.description}
+                    label='description'
+                    multiline
+                    rows={2}
+                    variant="filled"
+                    sx={{ margin: '3%' }}
+                    required={true}
+                /><br />
+                <TextField id="outlined-basic"
+                    inputRef={inputEmail}
+                    defaultValue={system?.communicationDetails?.email}
+                    label='email'
+                    variant="filled"
+                    sx={{ margin: '3%' }}
+                /><br />
+                <TextField id="outlined-basic"
+                    inputRef={inputPhone}
+                    defaultValue={system?.communicationDetails?.phone}
+                    label='phone'
+                    variant="filled"
+                    sx={{ margin: '3%' }}
+                />
             </DialogContent>
             <DialogActions>
                 <Button onClick={close}> Cancel </Button>

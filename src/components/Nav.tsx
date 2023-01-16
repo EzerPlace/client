@@ -14,6 +14,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { render } from '@testing-library/react';
 
 export const Nav = () => {
     const navigate = useNavigate();
@@ -36,7 +37,9 @@ export const Nav = () => {
     const logout = () => {
         handleClose();
         setUserLogin(false);
-        auth.signOut()
+        auth.signOut();
+        // eslint-disable-next-line no-restricted-globals
+        location.reload();
     }
 
     const login = () => {
@@ -60,7 +63,7 @@ export const Nav = () => {
         /> */}
             </FormGroup>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar className='ezerColor' >
                     <IconButton
                         size="large"
                         edge="start"

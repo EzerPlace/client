@@ -4,6 +4,9 @@ import { auth } from './config/firebase';
 import routes from './config/routes';
 import userStore from './store/UserStore';
 import './App.css';
+import routeInterface from './interfaces/route.interface';
+import { SystemHome } from './pages/systemHome';
+import AddMarker from './components/markers/addMarker';
 
 export interface IApplicationProps { }
 
@@ -26,15 +29,27 @@ const App: React.FunctionComponent<IApplicationProps> = props => {
       <span className='loadingAnim3'>.</span>
     </div>
 
+  const recursiveRoute = (route: routeInterface) => {
+    return <Route
+      path={route.path}
+      key={route.index}
+      element={<route.component />}
+    >
+      {route.children && route.children.map((route) =>
+        recursiveRoute(route)
+      )}
+    </Route>
+  };
+
   return (
     <Router>
       <Routes>
-        {routes.map((route, index) =>
-          <Route
-            key={index}
-            path={route.path}
-            element={<route.component />}
-          />)}
+        {routes.map((route) =>
+          recursiveRoute(route)
+        )}
+        {/* <Route path='/:systemUrl' key={1} element={<SystemHome />} >
+          <Route path='addMarker' key={2} element={<AddMarker />} ></Route>
+        </Route> */}
       </Routes>
     </Router>
   );

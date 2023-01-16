@@ -32,8 +32,8 @@ const Login = () => {
                 "error");
     }
 
-    const loginWithGoogle = () => {
-        signInWithGoogle();
+    const loginWithGoogle = async() => {
+        await signInWithGoogle();
         navigate('/');
     }
 
