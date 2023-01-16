@@ -70,7 +70,7 @@ export const SystemHome = () => {
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
-    libraries: ['places']
+    libraries: ['places'],
   })
 
   // useEffect(() => {

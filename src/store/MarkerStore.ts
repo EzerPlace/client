@@ -146,10 +146,25 @@
 import { makeAutoObservable } from 'mobx';
 import axios from 'axios';
 import { Marker } from '../utils/Marker';
+import systemStore from './SystemStore';
+import userStore from './UserStore';
+import { auth } from '../config/firebase';
+
+const baseUrl = 'http://localhost:3333/marker';
+
+const getHeaders = async () => {
+    const token = await auth.currentUser?.getIdToken();
+    return {
+        Authorization: `Bearer ${token}`
+    }
+}
 
 const addMarker = async (marker: Marker) => {
     try {
-        const res = await axios.post(`http://localhost:3333/marker/createMarker`, marker);
+        const headers = await getHeaders();
+        const res = await axios.post(`${baseUrl}/createMarker`, marker, {
+            headers: headers,
+        });
         let tempList = await res.data;
         return tempList;
     } catch (error) { console.log(error); }
@@ -165,16 +180,17 @@ const addMarker = async (marker: Marker) => {
 
 const getAllMarkerForSystem = async (system_id: string) => {
     try {
-        debugger
-        const res = await axios.get(`http://localhost:3333/marker/getBySystemId/${system_id}`);
-        debugger
+        const headers = await getHeaders();
+        const res = await axios.get(`${baseUrl}/systemsMarkers/${system_id}`, {
+            headers: headers,
+        });
         let tempList = await res.data;
-        debugger;
-        console.log(tempList)
+        console.log(tempList);
         return tempList;
     }
     catch (error) { console.log(error); }
 }
+
 const deleteMarker = async (marker_id: string | undefined) => {
     try {
         const res = await axios.delete(`http://localhost:3333/marker/${marker_id}`);
@@ -203,15 +219,18 @@ class Store {
     async getAllMarkerForSystem(id: string) {
         this.markers = await getAllMarkerForSystem(id)
     }
+
     async removeMarkers(id: string) {
         console.log(this.markers)
         await deleteMarker(id)
         this.markers = this.markers.filter((m) => (m._id !== id))
         console.log(this.markers)
     }
+
     async SetcurrentMarker(name: string) {
         this.currentMarker = this.markers.find((m) => (m.name === name))
     }
+
     async SearchMarker(name: string | undefined) {
         if (name !== "") {
             this.currentMarker = this.markers.find((m) => (m.name === name))
@@ -220,12 +239,13 @@ class Store {
     }
 
     async addMarker(marker: Marker) {
+        marker.system_id = systemStore.currentSystem?._id || '';
+        marker.manager_id = userStore.user?.fireBaseUId || '';
         const markerAdded = await addMarker(marker)
         this.markers.push(markerAdded);
         this.currentMarker = markerAdded;
-        // this.currentMarker=null
-        //request function
     }
+
     // async UpdateMarker(id: string, marker: any) {
     //     await UpdateMarker(id, marker)
 
