@@ -22,7 +22,6 @@ const register = () => {
 
         try {
             const resulte = await auth.createUserWithEmailAndPassword(email, password);
-            // logging.info(resulte);
 
         } catch (error) {}
     }

@@ -5,8 +5,6 @@ import routes from './config/routes';
 import userStore from './store/UserStore';
 import './App.css';
 import routeInterface from './interfaces/route.interface';
-import { SystemHome } from './pages/systemHome';
-import AddMarker from './components/markers/addMarker';
 
 export interface IApplicationProps { }
 
@@ -47,9 +45,6 @@ const App: React.FunctionComponent<IApplicationProps> = props => {
         {routes.map((route) =>
           recursiveRoute(route)
         )}
-        {/* <Route path='/:systemUrl' key={1} element={<SystemHome />} >
-          <Route path='addMarker' key={2} element={<AddMarker />} ></Route>
-        </Route> */}
       </Routes>
     </Router>
   );
