@@ -17,6 +17,8 @@ import Menu from '@mui/material/Menu';
 import { render } from '@testing-library/react';
 
 export const Nav = () => {
+    { <img src='${https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D112156168649&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Fpages%2FEZER-MIZION-%2F112156168649%2F&tbnid=PjzuxDd0lm5w4M&vet=12ahUKEwjwtv6K4uz8AhVCpycCHeslBHYQMygBegQIARA_..i&docid=6SeqV_SKbCfa3M&w=1332&h=1332&q=ezer%20mizion%20icon&ved=2ahUKEwjwtv6K4uz8AhVCpycCHeslBHYQMygBegQIARA_
+}'/> }
     const navigate = useNavigate();
     //   const [auth, setAuth] = useState(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -25,6 +27,7 @@ export const Nav = () => {
     //   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //     setAuth(event.target.checked);
     //   };
+   
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);

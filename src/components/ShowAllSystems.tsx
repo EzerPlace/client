@@ -79,7 +79,7 @@ const ShowAllSystems = () => {
           <Typography variant="h4" component="h2" >
 
             <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
-              <Button variant="outlined" onClick={() => setAllSystems(!allSystems)}
+              <Button color='error' variant="outlined" onClick={() => setAllSystems(!allSystems)}
                 sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>
                 {allSystems ? 'My Systems' : 'All Systems'}
               </Button>
@@ -106,16 +106,16 @@ const ShowAllSystems = () => {
               <Typography gutterBottom variant="h5" component="div">
                 {systemCard.objectName}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography  variant="body2" color="text.secondary">
                 {systemCard.description}
               </Typography>
             </CardContent>
             <CardActions>
-              <Button variant="contained" size="small" onClick={() => {
+              <Button color='error' variant="contained" size="small" onClick={() => {
                 setSystemIdTOEdit(systemCard._id || '0');
                 setOpenEdit(true);
               }}>edit</Button>
-              <Button variant="contained" size="small" onClick={() => deleteSystem(systemCard._id)}>delete</Button>
+              <Button color='error' variant="contained" size="small" onClick={() => deleteSystem(systemCard._id)}>delete</Button>
             </CardActions>
           </Card>
         )}
@@ -124,7 +124,7 @@ const ShowAllSystems = () => {
       {
         auth.currentUser &&
         <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
-          <Button variant="outlined" onClick={handleClickOpen}
+          <Button color='error' variant="outlined" onClick={handleClickOpen}
             sx={{ marginTop: '30px', marginLeft: 'calc(50vw - 90px)' }}>
             Add a new system
           </Button>

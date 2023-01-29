@@ -38,7 +38,7 @@ export const SendGrid = () => {
 
     return (
         <div>
-            <Button
+            <Button color='error'
                 onClick={sendEmail}
             >send email</Button>
         </div>
