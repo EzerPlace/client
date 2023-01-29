@@ -46,8 +46,8 @@ const ShowAllSystems = () => {
   const handleClickOpen = () => {
     if (!auth.currentUser)
       swal("You cannot add a new system", "You need to identify yourself")
-    if (systems.length === maxOfSystems)
-      swal("You cannot add a new system", "You have reached the maximum possible amount of systems")
+    // if (systems.length === maxOfSystems)
+    //   swal("You cannot add a new system", "You have reached the maximum possible amount of systems")
     else setOpenAdd(true);
   };
 

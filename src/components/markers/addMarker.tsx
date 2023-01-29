@@ -1,12 +1,9 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
-import axios from 'axios';
 import { observer } from 'mobx-react';
 import { useRef, useState } from 'react';
-import { getGeocode } from 'use-places-autocomplete';
 import markerStore from '../../store/MarkerStore';
 import swal from 'sweetalert';
 import AutoComplete from '../perSystem/autoComplete';
-import systemStore from '../../store/SystemStore';
 import { GoogleMap } from '@react-google-maps/api';
 import { Marker } from '../../utils/Marker';
 
@@ -46,7 +43,6 @@ export const AddMarker: React.FC<props> = ({ setOpenAdd }: props) => {
 
     const handleCloseAndSave = async () => {
         if (allFieldsAreFilled()) {
-            close();
             const markerToSave: Marker = {
                 system_id: '',
                 manager_id: '',
@@ -65,6 +61,7 @@ export const AddMarker: React.FC<props> = ({ setOpenAdd }: props) => {
 
             try {
                 await markerStore.addMarker(markerToSave);
+                close();
                 swal({
                     title: 'Saved!',
                     text: 'your marker added ',

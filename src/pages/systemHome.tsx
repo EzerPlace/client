@@ -7,7 +7,6 @@ import { Map } from '../components/perSystem/map';
 import { Box } from '@mui/material';
 import systemStore from '../store/SystemStore';
 import markerStore from '../store/MarkerStore';
-import { toJS } from 'mobx';
 
 export const SystemHome = () => {
   const [getSystem, setGetSystem] = useState<boolean>(false);
@@ -23,7 +22,6 @@ export const SystemHome = () => {
     const serverCalls = async () => {
       await systemStore.getSystemByUrlName(systemUrl);
       await markerStore.getMarkersBySystemId();
-      console.log(toJS(markerStore.markers));
       setGetSystem(true);
     }
 

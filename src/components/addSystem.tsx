@@ -42,7 +42,6 @@ export const AddSystem: React.FC<props> = ({ setOpenAdd }: props) => {
 
   const handleCloseAndSave = async () => {
     if (allFieldsAreFilled()) {
-      close();
       const systemToSave = {
         topic: inputTopic.current?.value || '',
         urlName: inputName.current?.value || '',
@@ -56,6 +55,7 @@ export const AddSystem: React.FC<props> = ({ setOpenAdd }: props) => {
         }
       }
       systemStore.addSystem(systemToSave);
+      close();
       swal({
         title: "Saved!",
         text: "your system created successfully!",
