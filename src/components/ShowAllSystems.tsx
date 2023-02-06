@@ -16,38 +16,36 @@ import Box from '@mui/material/Box';
 import swal from 'sweetalert';
 import '../style/ShowAllSystems.css';
 
-import { SendGrid } from './sendGrid';
-
 const ShowAllSystems = () => {
-  const maxOfSystems: number = 4;
-  const [systemIdTOEdit, setSystemIdTOEdit] = useState('1');
+  const [systemIdToEdit, setSystemIdToEdit] = useState('1');
   const [systems, setSystems] = useState<System[]>([]);
   const [openAdd, setOpenAdd] = useState<boolean>(false);
   const [openEdit, setOpenEdit] = useState<boolean>(false);
   const [allSystems, setAllSystems] = useState<boolean>(true);
   const navigate = useNavigate();
+  const [haveSystem, setHaveSystem] = useState<boolean>(false);
+
+  useEffect(() => {
+    let i = 0;
+    for (; i < systemStore.systems?.length && systemStore.systems[i].adminUid === auth.currentUser?.uid; i++);
+    if (i < systemStore.systems?.length) {
+      setHaveSystem(true);
+  }},[openAdd]);
 
   useEffect(() => {
     const fetch = async () => {
-      try {
-        allSystems ?
-          await systemStore.getAllSystems() :
-          await systemStore.getSystemsOfAdmin()
-      } catch {
-        navigate('/errorPage');
-      }
+      allSystems ?
+        await systemStore.getAllSystems() :
+        await systemStore.getSystemsOfAdmin();
 
       setSystems(systemStore.systems);
     };
     fetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [openAdd, openEdit, allSystems]);
+  }, [openAdd, openEdit, allSystems, navigate]);
 
   const handleClickOpen = () => {
     if (!auth.currentUser)
       swal("You cannot add a new system", "You need to identify yourself")
-    // if (systems.length === maxOfSystems)
-    //   swal("You cannot add a new system", "You have reached the maximum possible amount of systems")
     else setOpenAdd(true);
   };
 
@@ -72,10 +70,9 @@ const ShowAllSystems = () => {
 
   return (
     <>
-      <SendGrid />
       <Box sx={{ width: '100%' }} textAlign={'center'}>
         {
-          auth.currentUser &&
+          auth.currentUser && haveSystem &&
           <Typography variant="h4" component="h2" >
 
             <Box sx={{ width: '100%', display: 'flex', marginBottom: '0%' }}>
@@ -110,13 +107,15 @@ const ShowAllSystems = () => {
                 {systemCard.description}
               </Typography>
             </CardContent>
-            <CardActions>
-              <Button variant="contained" size="small" onClick={() => {
-                setSystemIdTOEdit(systemCard._id || '0');
-                setOpenEdit(true);
-              }}>edit</Button>
-              <Button variant="contained" size="small" onClick={() => deleteSystem(systemCard._id)}>delete</Button>
-            </CardActions>
+            {auth.currentUser?.uid === systemCard.adminUid &&
+              <CardActions>
+                <Button variant="contained" size="small" onClick={() => {
+                  setSystemIdToEdit(systemCard._id || '0');
+                  setOpenEdit(true);
+                }}>edit</Button>
+                <Button variant="contained" size="small" onClick={() => deleteSystem(systemCard._id)}>delete</Button>
+              </CardActions>
+            }
           </Card>
         )}
       </Box>
@@ -131,7 +130,7 @@ const ShowAllSystems = () => {
         </Box>
       }
 
-      {openEdit && <EditSystem systemUid={systemIdTOEdit} setOpenEdit={setOpenEdit} />}
+      {openEdit && <EditSystem systemUid={systemIdToEdit} setOpenEdit={setOpenEdit} />}
 
       {openAdd && <AddSystem setOpenAdd={setOpenAdd} />}
     </>

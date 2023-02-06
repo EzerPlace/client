@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react'
 import systemStore from '../../store/SystemStore';
-import { System } from '../../utils/System';
 
 export const SystemHeader = () => {
 

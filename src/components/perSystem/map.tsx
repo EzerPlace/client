@@ -8,6 +8,8 @@ import { Circle, DirectionsRenderer, GoogleMap, Marker, MarkerClusterer, MarkerC
 import AutoComplete from './autoComplete';
 import markerStore from '../../store/MarkerStore';
 import { toJS } from 'mobx';
+import { auth } from '../../config/firebase';
+import swal from 'sweetalert';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
@@ -29,10 +31,7 @@ export const Map = () => {
   const [nearLocation, setNearLocation] = useState(false);
   const onLoad = useCallback((map: any) => (mapRef.current = map), [])
   const houses: LatLngLiteral[] = [];
-  // const nearbyLocations: LatLngLiteral[] = [{ lat: 31.7, lng: 35.167252 }];
   const nearbyLocations: LatLngDuration[] = [];
-  // const markers: google.maps.Marker[] = [];
-  // const map: google.maps.Map;
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -44,8 +43,6 @@ export const Map = () => {
   //   mapRef.current?.render();
   // }, [nearLocation, office]);
 
-  // toJS(markerStore.markers).map(m => markers.push(new Marker(opts: { lat: m.locationGeolocation.lat, lng: m.locationGeolocation.lng })));
-  // toJS(markerStore.markers).map(m => markers.push(new Marker(opts: { lat: m.locationGeolocation.lat, lng: m.locationGeolocation.lng }));
   toJS(markerStore.markers).map(m => houses.push({ lat: m.locationGeolocation.lat, lng: m.locationGeolocation.lng }));
 
   const fetchDirections = (house: LatLngLiteral) => {
@@ -120,7 +117,12 @@ export const Map = () => {
 
       <Box onMouseOver={() => setIsHoveringAdd(true)} onMouseOut={() => setIsHoveringAdd(false)}
         sx={{ zIndex: '1', position: 'absolute', bottom: '100px', right: '60px', display: 'flex', marginBottom: '0%' }}>
-        <Button variant="outlined" onClick={() => setOpenAddMarker(true)}
+        <Button variant="outlined" onClick={() => {
+          if (!auth.currentUser)
+            swal("You cannot add a new marker", "You need to identify yourself");
+          else
+            setOpenAddMarker(true);
+        }}
           sx={{ marginTop: '30px', marginLeft: '70px' }}>
           <AddLocationAltIcon />
           {isHoveringAdd && 'add marker'}
@@ -168,7 +170,6 @@ export const Map = () => {
                 position={office}
                 icon={{ url: "https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/256/Map-Marker-Ball-Right-Azure.png", scaledSize: new google.maps.Size(73, 70) }}
               />
-              {/* {!nearLocation && */}
               <MarkerClusterer>
                 {(clusterer: any | MarkerClustererProps | Readonly<MarkerClustererProps>): any =>
                 (!nearLocation ?

@@ -21,7 +21,6 @@ export const AddMarker: React.FC<props> = ({ setOpenAdd }: props) => {
     const inputEmail = useRef<HTMLInputElement>();
     const inputPhone = useRef<HTMLInputElement>();
     const [office, setOffice] = useState<LatLngLiteral>();
-
     const mapRef = useRef<GoogleMap>();
 
     const allFieldsAreFilled = () => {

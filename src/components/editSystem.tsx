@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -41,7 +39,7 @@ export const EditSystem = ({ systemUid, setOpenEdit }: props) => {
             setSystem(systemStore.currentSystem);
         };
         fetch();
-    }, []);
+    }, [navigate, systemUid]);
 
     const allFieldsAreFilled = () => {
         if (!inputTopic.current?.value || !inputUrlName.current?.value || !inputUrlImg.current?.value ||

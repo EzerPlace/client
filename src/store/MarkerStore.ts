@@ -75,7 +75,7 @@ class Store {
             this.markers = await toJS(getMarkersBySystemId(systemStore.currentSystem?._id));
         }
         else swal("Please choose a system!",
-            "you can't make a marker on any system!",
+            "you can't get markers of any system!",
             "error");
     }
 
