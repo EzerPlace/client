@@ -8,6 +8,7 @@ import LockResetOutlinedIcon from '@mui/icons-material/LockResetOutlined';
 import swal from 'sweetalert';
 
 import '../../style/reset.css';
+import { Nav } from '../../components/Nav';
 
 const Reset = () => {
     const navigate = useNavigate();
@@ -30,26 +31,29 @@ const Reset = () => {
     }
 
     return (
-        <div className='reset'>
-            <div className='icons_style'>reset password <LockResetOutlinedIcon /></div><br />
-            <input
-                type="text"
-                className="textBox"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-            /><br />
-            <Button color='error'
-                variant="contained"
-                onClick={resetPassword}
-                sx={{ mt: 1, mr: 1 }}
-            >
-                Send password reset email
-            </Button>
-            <div>
-                Already have an account? <Link to="/auth/login">Log In</Link> now.
+        <>
+            <Nav />
+            <div className='reset'>
+                <div className='icons_style'>reset password <LockResetOutlinedIcon /></div><br />
+                <input
+                    type="text"
+                    className="textBox"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                /><br />
+                <Button color='error'
+                    variant="contained"
+                    onClick={resetPassword}
+                    sx={{ mt: 1, mr: 1 }}
+                >
+                    Send password reset email
+                </Button>
+                <div>
+                    Already have an account? <Link to="/auth/login">Log In</Link> now.
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

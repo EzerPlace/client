@@ -21,6 +21,7 @@ import LockPersonRoundedIcon from '@mui/icons-material/LockPersonRounded';
 import GoogleIcon from '@mui/icons-material/Google';
 
 import '../../style/signup.css';
+import { Nav } from '../../components/Nav';
 
 const SignUpPage: React.FunctionComponent<IPageProps> = props => {
     const navigate = useNavigate();
@@ -69,7 +70,7 @@ const SignUpPage: React.FunctionComponent<IPageProps> = props => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const saveUser = async()  => {
+    const saveUser = async () => {
         if (firstName && lastName) {
             await userStore.addUser(firstName, lastName, phone);
             navigate('/');
@@ -82,104 +83,107 @@ const SignUpPage: React.FunctionComponent<IPageProps> = props => {
     }
 
     return (
-        <div className='signUp'>
-            <div className='icons_style'>sign up <LockPersonRoundedIcon /></div>
-            <Box sx={{ maxWidth: 400 }}>
-                <Stepper activeStep={activeStep} orientation="vertical">
-                    <Step>
-                        <StepLabel color='error'>
-                            Sign In with Email and Password
-                        </StepLabel>
-                        <StepContent>
-                            <Typography>
-                                <input
-                                    type="text"
-                                    className="textBox"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="Email"
-                                />
-                                <input
-                                    type="password"
-                                    className="textBox"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="Password"
-                                />
-                            </Typography>
-                            <Box sx={{ mb: 2 }}>
-                                <div>
-                                    <Button color='error'
-                                        variant="contained"
-                                        onClick={handleNext}
-                                        sx={{ mt: 1, mr: 1 }}
-                                    >
-                                        Continue
-                                    </Button>
-                                </div>
-                            </Box>
-                        </StepContent>
-                    </Step>
-                    <Step>
-                        <StepLabel>
-                            Set Details
-                        </StepLabel>
-                        <StepContent>
-                            <Typography>
-                                <input
-                                    type="text"
-                                    className="textBox"
-                                    value={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                    placeholder="First Name"
-                                />
-                                <input
-                                    type="text"
-                                    className="textBox"
-                                    value={lastName}
-                                    onChange={(e) => setLastName(e.target.value)}
-                                    placeholder="Last Name"
-                                /><input
-                                    type="text"
-                                    className="textBox"
-                                    value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    placeholder="phone"
-                                />
-                            </Typography>
-                            <Box sx={{ mb: 2 }}>
-                                <div>
-                                    <Button color='error'
-                                        variant="contained"
-                                        onClick={saveUser}
-                                        sx={{ mt: 1, mr: 1 }}
-                                    >
-                                        Register
-                                    </Button>
-                                    <Button color='error'
-                                        onClick={handleBack}
-                                        sx={{ mt: 1, mr: 1 }}
-                                    >
-                                        Back
-                                    </Button>
-                                </div>
-                            </Box>
-                        </StepContent>
-                    </Step>
-                </Stepper>
-            </Box>
-            <Button color='error'
-                variant="contained"
-                onClick={() => signInWithSocialMedia(Providers.google)}
-                sx={{ mt: 1, mr: 1 }}
-            >
-                Register with Google
-                <GoogleIcon className='google-icon' />
-            </Button>
-            <div>
-                Already have an account? <Link to="/auth/login">Log In</Link> now.
+        <>
+            <Nav />
+            <div className='signUp'>
+                <div className='icons_style'>sign up <LockPersonRoundedIcon /></div>
+                <Box sx={{ maxWidth: 400 }}>
+                    <Stepper activeStep={activeStep} orientation="vertical">
+                        <Step>
+                            <StepLabel color='error'>
+                                Sign In with Email and Password
+                            </StepLabel>
+                            <StepContent>
+                                <Typography>
+                                    <input
+                                        type="text"
+                                        className="textBox"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="Email"
+                                    />
+                                    <input
+                                        type="password"
+                                        className="textBox"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder="Password"
+                                    />
+                                </Typography>
+                                <Box sx={{ mb: 2 }}>
+                                    <div>
+                                        <Button color='error'
+                                            variant="contained"
+                                            onClick={handleNext}
+                                            sx={{ mt: 1, mr: 1 }}
+                                        >
+                                            Continue
+                                        </Button>
+                                    </div>
+                                </Box>
+                            </StepContent>
+                        </Step>
+                        <Step>
+                            <StepLabel>
+                                Set Details
+                            </StepLabel>
+                            <StepContent>
+                                <Typography>
+                                    <input
+                                        type="text"
+                                        className="textBox"
+                                        value={firstName}
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                        placeholder="First Name"
+                                    />
+                                    <input
+                                        type="text"
+                                        className="textBox"
+                                        value={lastName}
+                                        onChange={(e) => setLastName(e.target.value)}
+                                        placeholder="Last Name"
+                                    /><input
+                                        type="text"
+                                        className="textBox"
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        placeholder="phone"
+                                    />
+                                </Typography>
+                                <Box sx={{ mb: 2 }}>
+                                    <div>
+                                        <Button color='error'
+                                            variant="contained"
+                                            onClick={saveUser}
+                                            sx={{ mt: 1, mr: 1 }}
+                                        >
+                                            Register
+                                        </Button>
+                                        <Button color='error'
+                                            onClick={handleBack}
+                                            sx={{ mt: 1, mr: 1 }}
+                                        >
+                                            Back
+                                        </Button>
+                                    </div>
+                                </Box>
+                            </StepContent>
+                        </Step>
+                    </Stepper>
+                </Box>
+                <Button color='error'
+                    variant="contained"
+                    onClick={() => signInWithSocialMedia(Providers.google)}
+                    sx={{ mt: 1, mr: 1 }}
+                >
+                    Register with Google
+                    <GoogleIcon className='google-icon' />
+                </Button>
+                <div>
+                    Already have an account? <Link to="/auth/login">Log In</Link> now.
+                </div>
             </div>
-        </div>
+        </>
     );
 
 

@@ -10,6 +10,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import swal from 'sweetalert';
 
 import '../../style/login.css';
+import { Nav } from '../../components/Nav';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -32,53 +33,56 @@ const Login = () => {
                 "error");
     }
 
-    const loginWithGoogle = async() => {
+    const loginWithGoogle = async () => {
         await signInWithGoogle();
         navigate('/');
     }
 
     return (
-        <div className='login'>
-            <div className='icons_style'>log in <AccountCircleRoundedIcon /></div><br />
-            <div>
-                <input
-                    type="text"
-                    className="textBox"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                /><br />
-                <input
-                    type="password"
-                    className="textBox"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                />
-            </div>
-            <div>
-                Forget your password? <Link to="/auth/reset">Reset</Link> now.
-            </div>
-            <Button color='error'
-                variant="contained"
-                onClick={login}
-                sx={{ mt: 1, mr: 1 }}
-            >
-                Login
-            </Button><br />
-            <Button color='error'
-                variant="contained"
-                onClick={loginWithGoogle}
-                sx={{ mt: 1, mr: 1 }}
-            >
-                login with Google
-                <GoogleIcon className='google-icon' />
-            </Button>
-            <div>
-                Don't have an account? <Link to="/auth/signup">Sign Up</Link> now.
-            </div>
+        <>
+            <Nav />
+            <div className='login'>
+                <div className='icons_style'>log in <AccountCircleRoundedIcon /></div><br />
+                <div>
+                    <input
+                        type="text"
+                        className="textBox"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                    /><br />
+                    <input
+                        type="password"
+                        className="textBox"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                    />
+                </div>
+                <div>
+                    Forget your password? <Link to="/auth/reset">Reset</Link> now.
+                </div>
+                <Button color='error'
+                    variant="contained"
+                    onClick={login}
+                    sx={{ mt: 1, mr: 1 }}
+                >
+                    Login
+                </Button><br />
+                <Button color='error'
+                    variant="contained"
+                    onClick={loginWithGoogle}
+                    sx={{ mt: 1, mr: 1 }}
+                >
+                    login with Google
+                    <GoogleIcon className='google-icon' />
+                </Button>
+                <div>
+                    Don't have an account? <Link to="/auth/signup">Sign Up</Link> now.
+                </div>
 
-        </div>
+            </div>
+        </>
     )
 }
 

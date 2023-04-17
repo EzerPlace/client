@@ -109,3 +109,9 @@ h4 {
     font-weight: normal;
     margin: 10px 40px;
 }
+
+img {
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+}

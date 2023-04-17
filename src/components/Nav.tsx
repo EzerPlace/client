@@ -8,18 +8,15 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import CardMedia from '@mui/material/CardMedia';
+import HomeIcon from '@mui/icons-material/Home';
 
 export const Nav = () => {
-    {
-        <img src='${https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D112156168649&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Fpages%2FEZER-MIZION-%2F112156168649%2F&tbnid=PjzuxDd0lm5w4M&vet=12ahUKEwjwtv6K4uz8AhVCpycCHeslBHYQMygBegQIARA_..i&docid=6SeqV_SKbCfa3M&w=1332&h=1332&q=ezer%20mizion%20icon&ved=2ahUKEwjwtv6K4uz8AhVCpycCHeslBHYQMygBegQIARA_
-        }'/>
-    }
+    // const imgUrl = 'https://drive.google.com/file/d/1RB88BOh8hF2HGrS5KDFGEfalZJBVVfB1/view?usp=share_link'
+    // console.log(imgUrl)
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [userLogin, setUserLogin] = useState<boolean>(auth.currentUser != null);
@@ -46,6 +43,10 @@ export const Nav = () => {
         navigate('/auth/login');
     }
 
+    const home = () => {
+        navigate('/managerPage');
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <FormGroup>
@@ -58,8 +59,9 @@ export const Nav = () => {
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2 }}
+                        onClick={home}
                     >
-                        <MenuIcon />
+                        <HomeIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         EzerPlace
@@ -74,7 +76,10 @@ export const Nav = () => {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
-                                {userLogin ? <img src='${auth.currentUser?.photoURL}' /> : <AccountCircle />}
+                                {userLogin ? <img
+                                    src={`${auth.currentUser?.photoURL}`}
+                                    loading="lazy"
+                                /> : <AccountCircle />}
 
                             </IconButton>
                             <Menu

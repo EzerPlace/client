@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { Nav } from '../../components/Nav';
 import { auth } from '../../config/firebase';
 
 const register = () => {
@@ -23,11 +24,14 @@ const register = () => {
         try {
             const resulte = await auth.createUserWithEmailAndPassword(email, password);
 
-        } catch (error) {}
+        } catch (error) { }
     }
 
     return (
-        <div>register</div>
+        <>
+            <Nav />
+            <div>register</div>
+        </>
     )
 }
 
