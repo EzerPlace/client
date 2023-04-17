@@ -13,6 +13,7 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
+import '../style/nav.css';
 
 export const Nav = () => {
     // const imgUrl = 'https://drive.google.com/file/d/1RB88BOh8hF2HGrS5KDFGEfalZJBVVfB1/view?usp=share_link'
@@ -76,7 +77,7 @@ export const Nav = () => {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
-                                {userLogin ? <img
+                                {userLogin ? <img className='profile'
                                     src={`${auth.currentUser?.photoURL}`}
                                     loading="lazy"
                                 /> : <AccountCircle />}
