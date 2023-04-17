@@ -84,6 +84,10 @@ export const Map = () => {
       <Box onMouseOver={() => setIsHovering3Place(true)} onMouseOut={() => setIsHovering3Place(false)}
         sx={{ zIndex: '1', position: 'absolute', bottom: '50px', right: '60px', display: 'flex', marginBottom: '0%' }}>
         <Button color='error' variant="outlined" onClick={ async() => {
+          if (houses.length <= 3){
+            swal("Oooops...", "You have no more then 3 places");
+          }
+          else
             setOpenNearLocation(true);
         }}
           sx={{ marginTop: '30px', marginLeft: '70px' }}>
