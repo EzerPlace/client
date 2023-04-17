@@ -7,6 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { Fragment, useEffect, useState } from 'react';
 import markerStore from '../../store/MarkerStore';
 import { toJS } from 'mobx';
+import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 
@@ -181,7 +182,7 @@ export const NearPlaces: React.FC<props> = ({ setOpenNear, office }: props) => {
                 </List>
             </DialogContent>
             <DialogActions>
-                <Button color='error' onClick={close}>close</Button>
+                <Button color='error' onClick={close}><ModeOfTravelIcon /></Button>
             </DialogActions>
         </Dialog>
     )

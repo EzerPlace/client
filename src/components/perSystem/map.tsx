@@ -3,7 +3,6 @@ import { Box, Button } from '@mui/material';
 import { AddMarker } from '../markers/addMarker';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
-import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 import { Circle, DirectionsRenderer, GoogleMap, Marker, MarkerClusterer, MarkerClustererProps } from '@react-google-maps/api';
 import AutoComplete from './autoComplete';
 import markerStore from '../../store/MarkerStore';
@@ -16,11 +15,6 @@ type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
-interface LatLngDuration {
-  latLng: LatLngLiteral,
-  duration: { value: number, text: string },
-}
-
 export const Map = () => {
   const [directions, setDirections] = useState<DirectionsResult | any>();
   const [office, setOffice] = useState<LatLngLiteral>();
@@ -30,7 +24,6 @@ export const Map = () => {
   const [isHovering3Place, setIsHovering3Place] = useState(false);
   const [openAddMarker, setOpenAddMarker] = useState(false);
   const [openNearLocation, setOpenNearLocation] = useState(false);
-  const [nearLocation, setNearLocation] = useState(false);
   const onLoad = useCallback((map: any) => (mapRef.current = map), [])
   const houses: LatLngLiteral[] = [];
 
@@ -91,17 +84,11 @@ export const Map = () => {
       <Box onMouseOver={() => setIsHovering3Place(true)} onMouseOut={() => setIsHovering3Place(false)}
         sx={{ zIndex: '1', position: 'absolute', bottom: '50px', right: '60px', display: 'flex', marginBottom: '0%' }}>
         <Button color='error' variant="outlined" onClick={ async() => {
-          if (!nearLocation){
             setOpenNearLocation(true);
-          }
-          setNearLocation(!nearLocation);
         }}
           sx={{ marginTop: '30px', marginLeft: '70px' }}>
-          {!nearLocation ?
-            <ShareLocationIcon sx={{ marginLeft: '3px' }} /> :
-            <ModeOfTravelIcon />
-          }
-          {isHovering3Place && (nearLocation ? 'all places' : 'nearby places')}
+            <ShareLocationIcon sx={{ marginLeft: '3px' }} />
+          {isHovering3Place && 'nearby places'}
 
         </Button>
       </Box><>
