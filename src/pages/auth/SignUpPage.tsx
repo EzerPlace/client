@@ -69,9 +69,10 @@ const SignUpPage: React.FunctionComponent<IPageProps> = props => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const saveUser = () => {
+    const saveUser = async()  => {
         if (firstName && lastName) {
-            userStore.addUser(firstName, lastName, phone);
+            await userStore.addUser(firstName, lastName, phone);
+            navigate('/');
         }
         else {
             swal("Fill Fields!",
@@ -82,11 +83,11 @@ const SignUpPage: React.FunctionComponent<IPageProps> = props => {
 
     return (
         <div className='signUp'>
-            <div className='signUpIcon'>sign up <LockPersonRoundedIcon /></div>
+            <div className='icons_style'>sign up <LockPersonRoundedIcon /></div>
             <Box sx={{ maxWidth: 400 }}>
                 <Stepper activeStep={activeStep} orientation="vertical">
                     <Step>
-                        <StepLabel>
+                        <StepLabel color='error'>
                             Sign In with Email and Password
                         </StepLabel>
                         <StepContent>
@@ -108,7 +109,7 @@ const SignUpPage: React.FunctionComponent<IPageProps> = props => {
                             </Typography>
                             <Box sx={{ mb: 2 }}>
                                 <div>
-                                    <Button
+                                    <Button color='error'
                                         variant="contained"
                                         onClick={handleNext}
                                         sx={{ mt: 1, mr: 1 }}
@@ -148,14 +149,14 @@ const SignUpPage: React.FunctionComponent<IPageProps> = props => {
                             </Typography>
                             <Box sx={{ mb: 2 }}>
                                 <div>
-                                    <Button
+                                    <Button color='error'
                                         variant="contained"
                                         onClick={saveUser}
                                         sx={{ mt: 1, mr: 1 }}
                                     >
                                         Register
                                     </Button>
-                                    <Button
+                                    <Button color='error'
                                         onClick={handleBack}
                                         sx={{ mt: 1, mr: 1 }}
                                     >
@@ -167,7 +168,7 @@ const SignUpPage: React.FunctionComponent<IPageProps> = props => {
                     </Step>
                 </Stepper>
             </Box>
-            <Button
+            <Button color='error'
                 variant="contained"
                 onClick={() => signInWithSocialMedia(Providers.google)}
                 sx={{ mt: 1, mr: 1 }}

@@ -3,16 +3,6 @@
     margin-top: calc(50vh - 300px);
 }
 
-.loginIcon {
-    color: rgb(70, 70, 185);
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.icon {
-    margin: 1.5px;
-}
-
 a {
     color: black;
 }

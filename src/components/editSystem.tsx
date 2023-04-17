@@ -18,7 +18,6 @@ interface props {
 }
 
 export const EditSystem = ({ systemUid, setOpenEdit }: props) => {
-
     const [system, setSystem] = useState<System | null>(null);
 
     const inputTopic = useRef<HTMLInputElement>();
@@ -156,8 +155,8 @@ export const EditSystem = ({ systemUid, setOpenEdit }: props) => {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={close}> Cancel </Button>
-                <Button onClick={editSystem} autoFocus> Save </Button>
+                <Button color='error' onClick={close}> Cancel </Button>
+                <Button color='error' onClick={editSystem} autoFocus> Save </Button>
             </DialogActions>
         </Dialog>
     )

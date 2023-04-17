@@ -13,8 +13,13 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import CardMedia from '@mui/material/CardMedia';
 
 export const Nav = () => {
+    {
+        <img src='${https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D112156168649&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Fpages%2FEZER-MIZION-%2F112156168649%2F&tbnid=PjzuxDd0lm5w4M&vet=12ahUKEwjwtv6K4uz8AhVCpycCHeslBHYQMygBegQIARA_..i&docid=6SeqV_SKbCfa3M&w=1332&h=1332&q=ezer%20mizion%20icon&ved=2ahUKEwjwtv6K4uz8AhVCpycCHeslBHYQMygBegQIARA_
+        }'/>
+    }
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [userLogin, setUserLogin] = useState<boolean>(auth.currentUser != null);
@@ -40,7 +45,7 @@ export const Nav = () => {
         setUserLogin(true);
         navigate('/auth/login');
     }
-    
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <FormGroup>
@@ -57,7 +62,7 @@ export const Nav = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Photos
+                        EzerPlace
                     </Typography>
                     {(
                         <div>
@@ -69,7 +74,7 @@ export const Nav = () => {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
-                                {userLogin ? <img src='${auth.currentUser?.photoURL}'/> : <AccountCircle />}
+                                {userLogin ? <img src='${auth.currentUser?.photoURL}' /> : <AccountCircle />}
 
                             </IconButton>
                             <Menu

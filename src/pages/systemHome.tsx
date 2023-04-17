@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useLoadScript } from '@react-google-maps/api';
 import { useParams } from 'react-router-dom';
@@ -13,7 +14,7 @@ export const SystemHome = () => {
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
-    libraries: ['places']
+    libraries: ['places'],
   })
 
   const { systemUrl } = useParams();
@@ -30,7 +31,7 @@ export const SystemHome = () => {
 
 
   if (!isLoaded) {
-    return <div className='loader-container'>loading
+    return <div className='loader-container'>LOADING MAPS
       <span className='loadingAnim1'>.</span>
       <span className='loadingAnim2'>.</span>
       <span className='loadingAnim3'>.</span>

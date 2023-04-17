@@ -3,6 +3,16 @@
     background-color: yellow;
 }
 
+.icons_style {
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.icon {
+    margin: 1.5px;
+}
+
 .loader-container {
     width: 100%;
     height: 100vh;
@@ -16,12 +26,12 @@
 
 .loadingAnim1 {
     animation: loadingAnim1 1s linear 3ms infinite normal;
-    color: rgb(160, 187, 123);
+    color: rgb(149, 153, 156);
 }
 
 .loadingAnim2 {
     animation: loadingAnim2 1s linear 3ms infinite normal;
-    color: rgb(135, 177, 177);
+    color: rgb(160, 187, 123);
 }
 
 .loadingAnim3 {
@@ -93,4 +103,9 @@
     100% {
         opacity: 0;
     }
+}
+
+h4 {
+    font-weight: normal;
+    margin: 10px 40px;
 }

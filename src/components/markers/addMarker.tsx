@@ -124,10 +124,8 @@ export const AddMarker: React.FC<props> = ({ setOpenAdd }: props) => {
                     sx={{ margin: '3%' }} />
             </DialogContent>
             <DialogActions>
-                <Button onClick={close}>Cancel</Button>
-                <Button onClick={handleCloseAndSave} autoFocus>
-                    Save
-                </Button>
+                <Button color='error' onClick={close}>Cancel</Button>
+                <Button color='error' onClick={handleCloseAndSave} autoFocus>Save</Button>
             </DialogActions>
         </Dialog>
     )

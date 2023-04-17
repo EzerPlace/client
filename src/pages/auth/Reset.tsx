@@ -31,7 +31,7 @@ const Reset = () => {
 
     return (
         <div className='reset'>
-            <div className='loginIcon'>reset password <LockResetOutlinedIcon /></div><br />
+            <div className='icons_style'>reset password <LockResetOutlinedIcon /></div><br />
             <input
                 type="text"
                 className="textBox"
@@ -39,7 +39,7 @@ const Reset = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
             /><br />
-            <Button
+            <Button color='error'
                 variant="contained"
                 onClick={resetPassword}
                 sx={{ mt: 1, mr: 1 }}

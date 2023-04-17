@@ -39,7 +39,7 @@ const Login = () => {
 
     return (
         <div className='login'>
-            <div className='loginIcon'>log in <AccountCircleRoundedIcon /></div><br />
+            <div className='icons_style'>log in <AccountCircleRoundedIcon /></div><br />
             <div>
                 <input
                     type="text"
@@ -59,14 +59,14 @@ const Login = () => {
             <div>
                 Forget your password? <Link to="/auth/reset">Reset</Link> now.
             </div>
-            <Button
+            <Button color='error'
                 variant="contained"
                 onClick={login}
                 sx={{ mt: 1, mr: 1 }}
             >
                 Login
             </Button><br />
-            <Button
+            <Button color='error'
                 variant="contained"
                 onClick={loginWithGoogle}
                 sx={{ mt: 1, mr: 1 }}
